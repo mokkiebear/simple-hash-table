@@ -36,10 +36,6 @@ export default class HashTable {
             return undefined;
         }
 
-        if (currentBucket.length === 1) {
-            return currentBucket;
-        }
-
         const foundPair = currentBucket.find(row => row[0] === key);
 
         return foundPair ? foundPair[1] : undefined;
