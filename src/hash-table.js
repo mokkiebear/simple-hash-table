@@ -36,6 +36,24 @@ export default class HashTable {
             return currentBucket;
         }
 
-        return currentBucket.find((row) => row[0] === key)[1];
+        const foundPair = currentBucket.find(row => row[0] === key);
+    
+        return foundPair ? foundPair[1] : undefined;
+    }
+
+    keys() {
+        const keysArray = [];
+
+        this.data.forEach((bucket) => {
+            if (bucket.length > 1) {
+                bucket.forEach((innerBucket) => {
+                    keysArray.push(innerBucket[0]);
+                });
+            } else {
+                keysArray.push(bucket[0][0]);
+            }
+        });
+
+        return keysArray;
     }
 }

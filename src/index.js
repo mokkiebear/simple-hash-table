@@ -6,4 +6,4 @@ hashTable.set('city', 'Wien');
 hashTable.set('age', 25);
 hashTable.set('weather', 'sun');
 
-console.log(hashTable.data, hashTable.get('weather'));
+console.log(hashTable.data, hashTable.get('weather'), hashTable.keys());
