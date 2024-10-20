@@ -4,6 +4,10 @@ export default class HashTable {
     }
 
     _hash(key) {
+        if (typeof key !== 'string') {
+            key = String(key);
+        }
+
         let hash = 0;
         for (let i = 0; i < key.length; ++i) {
             hash = (hash + key.charCodeAt(i) * i) % this.data.length;
@@ -37,7 +41,7 @@ export default class HashTable {
         }
 
         const foundPair = currentBucket.find(row => row[0] === key);
-    
+
         return foundPair ? foundPair[1] : undefined;
     }
 
@@ -53,5 +57,23 @@ export default class HashTable {
         });
 
         return keysArray;
+    }
+
+    delete(key) {
+        const address = this._hash(key);
+        const currentBucket = this.data[address];
+
+        if (!currentBucket) {
+            return false;
+        }
+
+        const index = currentBucket.findIndex(pair => pair[0] === key);
+
+        if (index !== -1) {
+            currentBucket.splice(index, 1);
+            return true; // Элемент успешно удален
+        }
+
+        return false; // Элемент не найден
     }
 }
