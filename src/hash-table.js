@@ -45,12 +45,10 @@ export default class HashTable {
         const keysArray = [];
 
         this.data.forEach((bucket) => {
-            if (bucket.length > 1) {
+            if (bucket) {
                 bucket.forEach((innerBucket) => {
                     keysArray.push(innerBucket[0]);
                 });
-            } else {
-                keysArray.push(bucket[0][0]);
             }
         });
 
